@@ -12,8 +12,22 @@ function getComputerChoice() {
   }
 }
 
+function isValid(playerSelection) {
+  if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
+    return true;
+  }
+  else {
+    console.log("Invalid choice.")
+    return false;
+  }
+}
+
+
 function playRound() {
-  const playerSelection = "Rock".toLowerCase();
+  let playerSelection;
+  do {
+    playerSelection = prompt("Choose Rock, Paper, or Scissors").toLowerCase();
+  } while (!isValid(playerSelection));
   const computerSelection = getComputerChoice();
 
   if (playerSelection === computerSelection) {
@@ -45,6 +59,6 @@ function playRound() {
   }
 }
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 2; i++) {
   console.log(playRound());
 }
