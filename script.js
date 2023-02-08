@@ -1,3 +1,14 @@
+let winCount = 0;
+let tieCount = 0;
+let lossCount = 0;
+
+const win = document.querySelector('.wins');
+const tie = document.querySelector('.ties');
+const loss = document.querySelector('.losses');
+
+win.textContent = winCount;
+tie.textContent = tieCount;
+loss.textContent = lossCount;
 
 function getComputerChoice() {
   let temp = Math.random();
@@ -12,53 +23,55 @@ function getComputerChoice() {
   }
 }
 
-function isValid(playerSelection) {
-  if (playerSelection === "rock" || playerSelection === "paper" || playerSelection === "scissors") {
-    return true;
-  }
-  else {
-    console.log("Invalid choice.")
-    return false;
-  }
+function rock() {
+  playRound("rock");
+}
+
+function paper() {
+  playRound("paper");
+}
+
+function scissors() {
+  playRound("scissors");
 }
 
 
-function playRound() {
-  let playerSelection;
-  do {
-    playerSelection = prompt("Choose Rock, Paper, or Scissors").toLowerCase();
-  } while (!isValid(playerSelection));
+// returns 0 for user win, 1 for tie, and 2 for user loss
+function playRound(playerSelection) {
   const computerSelection = getComputerChoice();
 
   if (playerSelection === computerSelection) {
-    console.log(`tie, both selected ${playerSelection}`);
+    tieCount += 1;
+    tie.textContent = tieCount;
   }
   else if (playerSelection === "rock") {
     if (computerSelection === "scissors") {
-      console.log(`You win, ${playerSelection} beats ${computerSelection}`);
+      winCount += 1;
+      win.textContent = winCount;
     }
     else {
-      console.log(`You lose, ${computerSelection} beats ${playerSelection}`);
+      lossCount += 1;
+      loss.textContent = lossCount;
     }
   }
   else if (playerSelection === "paper") {
     if (computerSelection === "rock") {
-      console.log(`You win, ${playerSelection} beats ${computerSelection}`);
+      winCount += 1;
+      win.textContent = winCount;
     }
     else {
-      console.log(`You lose, ${computerSelection} beats ${playerSelection}`);
+      lossCount += 1;
+      loss.textContent = lossCount;
     }
   }
   else if (playerSelection === "scissors") {
     if (computerSelection === "paper") {
-      console.log(`You win, ${playerSelection} beats ${computerSelection}`);
+      winCount += 1;
+      win.textContent = winCount;
     }
     else {
-      console.log(`You lose, ${computerSelection} beats ${playerSelection}`);
+      lossCount += 1;
+      loss.textContent = lossCount;
     }
   }
-}
-
-for (let i = 0; i < 2; i++) {
-  console.log(playRound());
 }
